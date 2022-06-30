@@ -21,6 +21,12 @@ Route::get('/gallery', 'App\Http\Controllers\PageController@gallery')->name('fro
 Route::get('/blog', 'App\Http\Controllers\PageController@blog')->name('frontBlog');
 Route::get('/contact', 'App\Http\Controllers\PageController@contact')->name('frontContact');
 
+
+Route::get('/dashboard', 'App\Http\Controllers\PageDashboardController@dashboard')->name('adminDashboard');
+Route::get('/dashboard-list', 'App\Http\Controllers\PageDashboardController@list')->name('adminDashboardList');
+Route::get('/dashboard-account', 'App\Http\Controllers\PageDashboardController@account')->name('adminDashboardAccount');
+Route::get('/dashboard-setting', 'App\Http\Controllers\PageDashboardController@setting')->name('adminDashboardSetting');
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });

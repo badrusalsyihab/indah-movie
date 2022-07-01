@@ -46,6 +46,14 @@ class PageDashboardController extends Controller
 		return view('admin.pages.setting');
 	}
 
+
+	/*
+	page login
+	*/
+	public function login()
+	{
+		return view('admin.pages.login');
+	}
 	
 	
 }

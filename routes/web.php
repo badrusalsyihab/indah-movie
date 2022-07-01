@@ -23,6 +23,7 @@ Route::get('/contact', 'App\Http\Controllers\PageController@contact')->name('fro
 
 
 Route::get('/dashboard', 'App\Http\Controllers\PageDashboardController@dashboard')->name('adminDashboard');
+Route::get('/dashboard/login', 'App\Http\Controllers\PageDashboardController@login')->name('adminDashboardLogin');
 Route::get('/dashboard-list', 'App\Http\Controllers\PageDashboardController@list')->name('adminDashboardList');
 Route::get('/dashboard-account', 'App\Http\Controllers\PageDashboardController@account')->name('adminDashboardAccount');
 Route::get('/dashboard-setting', 'App\Http\Controllers\PageDashboardController@setting')->name('adminDashboardSetting');

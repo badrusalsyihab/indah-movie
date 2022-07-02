@@ -18,9 +18,7 @@ class PageDashboardCastingController extends Controller
 	*/
 	public function index()
 	{
-       // $data['list'] = MasterPesertaCasting::get()->toArray();
-       $data['lists'] = MasterPesertaCasting::paginate(1);
-       //dd($data);
+       $data['lists'] = MasterPesertaCasting::paginate(12);
 		return view('admin.pages.casting', $data);
 	}
 

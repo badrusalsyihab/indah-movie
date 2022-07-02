@@ -26,6 +26,10 @@ Route::get('/dashboard', 'App\Http\Controllers\PageDashboardController@dashboard
 Route::get('/dashboard/login', 'App\Http\Controllers\PageDashboardController@login')->name('adminDashboardLogin');
 Route::get('/dashboard-list', 'App\Http\Controllers\PageDashboardController@list')->name('adminDashboardList');
 Route::get('/dashboard-account', 'App\Http\Controllers\PageDashboardController@account')->name('adminDashboardAccount');
+
+Route::get('/dashboard-casting', 'App\Http\Controllers\PageDashboardCastingController@index')->name('adminDashboardCasting');
+Route::get('/dashboard-casting/{id}', 'App\Http\Controllers\PageDashboardCastingController@detail')->name('adminDashboardCastingDetail');
+
 Route::get('/dashboard-setting', 'App\Http\Controllers\PageDashboardController@setting')->name('adminDashboardSetting');
 
 // Route::get('/', function () {

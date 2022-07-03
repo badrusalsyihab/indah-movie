@@ -14,11 +14,13 @@
 			    </div><!--//row-->
 			   
 			    
-                @if ($message = Session::get('success'))
-	  <div class="alert alert-success alert-block">
-		  <strong>{{ $message }}</strong>
-	  </div>
-	@endif
+				@if(session('success'))
+    <div class="alert alert-success alert-dismissable">
+        {{session('success')}}
+    </div>
+@endif
+
+
 
 	@if ($message = Session::get('error'))
 	  <div class="alert alert-danger alert-block">
@@ -105,4 +107,10 @@
 @stop
 
 @section('scripts')
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+          $(".alert").delay(5000).slideUp(300);
+    });
+    </script>
 @stop

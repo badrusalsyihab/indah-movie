@@ -36,3 +36,15 @@ Route::get('/dashboard-sponsor', 'App\Http\Controllers\PageDashboardSponsorContr
 Route::get('/dashboard-sponsor-delete/{id}', 'App\Http\Controllers\PageDashboardSponsorController@delete')->name('adminDashboardSponsorDelete');
 
 
+Route::get('/dashboard-category-film', 'App\Http\Controllers\PageDashboardCategoryFilmController@index')->name('adminDashboardCategoryFilm');
+Route::get('/dashboard-category-film-form', 'App\Http\Controllers\PageDashboardCategoryFilmController@form')->name('adminDashboardCategoryForm');
+Route::get('/dashboard-category-film-delete/{id}', 'App\Http\Controllers\PageDashboardCategoryFilmController@delete')->name('adminDashboardCategoryFilmDelete');
+Route::post('/dashboard-category-film-store', 'App\Http\Controllers\PageDashboardCategoryFilmController@store')->name('adminDashboardCategoryFilmStore');
+Route::get('/dashboard-category-film-edit/{id}', 'App\Http\Controllers\PageDashboardCategoryFilmController@edit')->name('adminDashboardCategoryFilmEdit');
+
+
+Route::get('/dashboard-genre-film', 'App\Http\Controllers\PageDashboardGenreFilmController@index')->name('adminDashboardGenreFilm');
+Route::get('/dashboard-genre-film-form', 'App\Http\Controllers\PageDashboardGenreFilmController@form')->name('adminDashboardGenreForm');
+Route::get('/dashboard-genre-film-delete/{id}', 'App\Http\Controllers\PageDashboardGenreFilmController@delete')->name('adminDashboardGenreFilmDelete');
+Route::post('/dashboard-genre-film-store', 'App\Http\Controllers\PageDashboardGenreFilmController@store')->name('adminDashboardGenreFilmStore');
+Route::get('/dashboard-genre-film-edit/{id}', 'App\Http\Controllers\PageDashboardGenreFilmController@edit')->name('adminDashboardGenreFilmEdit');

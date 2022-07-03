@@ -179,6 +179,8 @@
 						        <ul class="submenu-list list-unstyled">
 								<li class="submenu-item"><a class="submenu-link" href="{{route('adminDashboardCasting')}}">Peserta Casting</a></li>
 								<li class="submenu-item"><a class="submenu-link" href="{{route('adminDashboardSponsor')}}">Sponsor</a></li>
+								<li class="submenu-item"><a class="submenu-link" href="{{route('adminDashboardCategoryFilm')}}">Category Film</a></li>
+								<li class="submenu-item"><a class="submenu-link" href="{{route('adminDashboardGenreFilm')}}">Genre Film</a></li>
 							        <!-- <li class="submenu-item"><a class="submenu-link" href="{{route('adminDashboardAccount')}}">Account</a></li>
 							        <li class="submenu-item"><a class="submenu-link" href="{{route('adminDashboardSetting')}}">Settings</a></li> -->
 						        </ul>

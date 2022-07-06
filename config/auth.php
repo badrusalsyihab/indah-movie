@@ -40,6 +40,16 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'casting' => [
+            'driver' => 'session',
+            'provider' => 'casting',
+        ],
+
+        'sponsor' => [
+            'driver' => 'session',
+            'provider' => 'sponsor',
+        ],
     ],
 
     /*
@@ -63,6 +73,16 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'casting' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\MasterPesertaCasting::class,
+        ],
+
+        'sponsor' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\MasterSponsor::class,
         ],
 
         // 'users' => [

@@ -15,7 +15,26 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\PageController@home')->name('frontHome');
 Route::get('/about', 'App\Http\Controllers\PageController@about')->name('frontAbout');
-Route::get('/class', 'App\Http\Controllers\PageController@class')->name('frontClass');
+
+
+
+
+Route::get('/login', 'App\Http\Controllers\Auth\PageAuthController@login')->name('frontLogin');
+Route::get('/logout', 'App\Http\Controllers\Auth\PageAuthController@logout')->name('frontLogout');
+
+Route::get('/sign-up', 'App\Http\Controllers\Auth\PageAuthController@signUp')->name('frontSignUp');
+Route::post('/login-store', 'App\Http\Controllers\Auth\PageAuthController@loginStore')->name('frontLoginStore');
+
+
+Route::post('/signup-casting-store', 'App\Http\Controllers\PageCastingController@formPostCasting')->name('frontSignUpCastingStore');
+Route::get('/casting', 'App\Http\Controllers\PageCastingController@casting')->name('frontCasting');
+Route::group(['prefix' => 'casting', 'middleware' => 'casting'], function () {
+    Route::get('/form', 'App\Http\Controllers\PageCastingController@formCasting')->name('frontCastingForm');
+    Route::post('/form-post', 'App\Http\Controllers\PageCastingController@formPostCasting')->name('frontCastingFormPost');
+    Route::post('/form-post-film', 'App\Http\Controllers\PageCastingController@storeToTransactionCasting')->name('frontCastingFormPostFilm');
+    
+});
+
 Route::get('/team', 'App\Http\Controllers\PageController@team')->name('frontTeam');
 Route::get('/gallery', 'App\Http\Controllers\PageController@gallery')->name('frontGallery');
 Route::get('/blog', 'App\Http\Controllers\PageController@blog')->name('frontBlog');
@@ -48,3 +67,9 @@ Route::get('/dashboard-genre-film-form', 'App\Http\Controllers\PageDashboardGenr
 Route::get('/dashboard-genre-film-delete/{id}', 'App\Http\Controllers\PageDashboardGenreFilmController@delete')->name('adminDashboardGenreFilmDelete');
 Route::post('/dashboard-genre-film-store', 'App\Http\Controllers\PageDashboardGenreFilmController@store')->name('adminDashboardGenreFilmStore');
 Route::get('/dashboard-genre-film-edit/{id}', 'App\Http\Controllers\PageDashboardGenreFilmController@edit')->name('adminDashboardGenreFilmEdit');
+
+Route::get('/dashboard-film', 'App\Http\Controllers\PageDashboardFilmController@index')->name('adminDashboardFilm');
+Route::get('/dashboard-film-form', 'App\Http\Controllers\PageDashboardFilmController@form')->name('adminDashboardForm');
+Route::get('/dashboard-film-delete/{id}', 'App\Http\Controllers\PageDashboardFilmController@delete')->name('adminDashboardFilmDelete');
+Route::post('/dashboard-film-store', 'App\Http\Controllers\PageDashboardFilmController@store')->name('adminDashboardFilmStore'); 
+Route::get('/dashboard-film-edit/{id}', 'App\Http\Controllers\PageDashboardFilmController@edit')->name('adminDashboardFilmEdit');

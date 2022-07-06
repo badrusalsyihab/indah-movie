@@ -6,6 +6,12 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Sanctum\HasApiTokens;
+
+
 /**
  * Class MasterPesertaCasting
  * 
@@ -35,9 +41,14 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class MasterPesertaCasting extends Model
+class MasterPesertaCasting extends Authenticatable
 {
+	use HasFactory, Notifiable;
+
 	protected $table = 'master_peserta_casting';
+	
+	protected $guard = 'casting';
+
 	protected $primaryKey = 'idPeserta';
 	public $incrementing = false;
 	public $timestamps = false;
@@ -75,6 +86,7 @@ class MasterPesertaCasting extends Model
 		'updatedAt',
 		'deletedAt'
 	];
+
 
 	public function transaksi_ikut_castings()
 	{

@@ -8,6 +8,10 @@ use Validator;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Auth;
+use App\Models\MasterPesertaCasting;
+use App\Models\MasterFilm;
+use DB;
 
 class PageController extends Controller
 {
@@ -28,12 +32,22 @@ class PageController extends Controller
 	}
 
 	/*
-	page class
+	page form login
 	*/
-	public function class()
+	public function login()
 	{
-		return view('front.pages.class');
+		return view('front.pages.login');
 	}
+
+	/*
+	page form signUp
+	*/
+	public function signUp()
+	{
+		return view('front.pages.signUp');
+	}
+
+	
 
 	/*
 	page team

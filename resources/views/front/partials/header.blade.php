@@ -12,7 +12,7 @@
                 <div class="navbar-nav font-weight-bold mx-auto py-0">
                     <a href="{{ route('frontHome') }}" class="nav-item nav-link active">Home</a>
                     <a href="{{ route('frontAbout') }}" class="nav-item nav-link">About</a>
-                    <a href="{{ route('frontClass') }}" class="nav-item nav-link">Classes</a>
+                    <a href="{{ route('frontCasting') }}" class="nav-item nav-link">Casting</a>
                     <a href="{{ route('frontTeam') }}" class="nav-item nav-link">Teachers</a>
                     <a href="{{ route('frontGallery') }}" class="nav-item nav-link">Gallery</a>
                     <div class="nav-item dropdown">
@@ -24,7 +24,11 @@
                     </div>
                     <a href="{{ route('frontContact') }}" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="#" class="btn btn-primary px-4">Join Class</a>
+                @if(Auth::guard('casting')->check())
+                <a href="{{route('frontLogout')}}" class="btn btn-primary px-4">log out</a>
+                @else
+                <a href="#" class="btn btn-primary px-4">Join</a>
+                @endif
             </div>
         </nav>
     </div>

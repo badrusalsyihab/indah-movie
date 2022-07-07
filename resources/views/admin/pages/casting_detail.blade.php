@@ -6,7 +6,7 @@
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
 		    <div class="container-xl">
 			    
-			    <h1 class="app-page-title">#{{$detail['idPeserta']}}</h1>
+			    <h1 class="app-page-title">Profile Detail</h1>
                 <div class="row gy-4">
 	                <div class="col-12 col-lg-6">
 		                <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
@@ -30,7 +30,7 @@
 								    <div class="row justify-content-between align-items-center">
 									    <div class="col-auto">
 										    <div class="item-label mb-2"><strong>Photo</strong></div>
-										    <div class="item-data"><img class="profile-image" src="{{$detail['fotoGrid']}}"></div>
+										    <div class="item-data"><img class="profile-image" src="{{ URL::asset('/asset_casting/'.$detail['fotoGrid']) }}"></div>
 									    </div><!--//col-->
 								    </div><!--//row-->
 							    </div><!--//item-->
@@ -114,7 +114,7 @@
 								    <div class="row justify-content-between align-items-center">
 									    <div class="col-auto">
 										    <div class="item-label"><strong>ktp</strong></div>
-									        <div class="item-data">{{$detail['fileKTP']}}</div>
+									        <div class="item-data"><a href="{{URL::asset('/asset_casting/'.$detail['fileKTP'])}}" download>{{$detail['fileKTP']}} </a></div>
 									    </div><!--//col-->
 									   
 								    </div><!--//row-->
@@ -123,7 +123,7 @@
 								    <div class="row justify-content-between align-items-center">
 									    <div class="col-auto">
 										    <div class="item-label"><strong>Biodata</strong></div>
-									        <div class="item-data">{{$detail['fileBiodata']}}</div>
+									        <div class="item-data"><a href="{{URL::asset('/asset_casting/'.$detail['fileBiodata'])}}" download>{{$detail['fileBiodata']}} </a></div>
 									    </div><!--//col-->
 								    </div><!--//row-->
 							    </div><!--//item-->
@@ -131,7 +131,7 @@
 								    <div class="row justify-content-between align-items-center">
 									    <div class="col-auto">
 										    <div class="item-label"><strong>Link Video Profil</strong></div>
-									        <div class="item-data">{{$detail['linkVideoProfil']}}</div>
+									        <div class="item-data"><a href="{{$detail['linkVideoProfil']}}" target="_blank"> {{$detail['linkVideoProfil']}} </a></div>
 									    </div><!--//col-->
 								    </div><!--//row-->
 							    </div><!--//item-->
@@ -139,7 +139,7 @@
 								    <div class="row justify-content-between align-items-center">
 									    <div class="col-auto">
 										    <div class="item-label"><strong>Link Video Akting</strong></div>
-									        <div class="item-data">{{$detail['linkVideoAkting']}}</div>
+									        <div class="item-data"><a href="{{$detail['linkVideoAkting']}}" target="_blank"> {{$detail['linkVideoAkting']}} </a> </div>
 									    </div><!--//col-->
 								    </div><!--//row-->
 							    </div><!--//item-->

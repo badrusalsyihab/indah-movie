@@ -29,7 +29,7 @@ class NotifyCastingMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail from ItSolutionStuff.com')
+        return $this->subject('Mail from web caseting')
                     ->view('emails.castingMail');
     }
 }

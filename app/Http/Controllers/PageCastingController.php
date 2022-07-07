@@ -15,6 +15,10 @@ use App\Models\TransaksiIkutCasting;
 use App\Models\MasterFilm;
 use DB;
 
+use Mail;
+use App\Mail\NotifyCastingMail;
+
+
 class PageCastingController extends Controller
 {
 	protected $lastInsertId;
@@ -73,6 +77,8 @@ class PageCastingController extends Controller
                 DB::rollBack();
                 return redirect(route('frontSignUp'));
             }
+            
+            
 
 			DB::commit();
             return redirect(route('frontSignUp'))->with(['success' => 'Register Success..']);
@@ -84,7 +90,7 @@ class PageCastingController extends Controller
 	protected function storeToMaterCasting($data)
 	{
 		try {
-
+           
 			$model = new MasterPesertaCasting;
             $model->idPeserta = $model::max('idPeserta')+1;
             $model->email = $data['email'];
@@ -118,6 +124,11 @@ class PageCastingController extends Controller
     /*
 	page storeToTransactionCasting
 	*/
+
+
+    /*
+	page storeToTransactionCasting
+	*/
     public function storeToTransactionCasting(Request $request)
 	{
 		try {
@@ -129,21 +140,18 @@ class PageCastingController extends Controller
                 return redirect(route('frontCastingForm'))->withInput($request->all())->withErrors($validator);
             } else {
 
-                $modelMaster = MasterPesertaCasting::where('email', $request->get('email'))->first();
-                $modelTrans = new TransaksiIkutCasting;
-               
-                $lastorderId = $modelTrans::max('idTrxCasting') ?? 1;
-                $lastIncreament = substr($lastorderId, -4);
-                $format = 'CAS' . date('Ymd') . str_pad($lastIncreament + 1, 4, 0, STR_PAD_LEFT);
+                DB::beginTransaction();
+                if(!$this->storetoDbTrans($request->all()))
+                {
+                    DB::rollBack();
+                    return redirect(route('frontCastingForm'));
+                }
+                if (!$this->sendMailCasting($request->all())) {
+                    DB::rollBack();
+                    return redirect(route('frontCastingForm'));
+                }
 
-                $modelTrans->idTrxCasting = $format;
-                $modelTrans->idPeserta = $modelMaster->idPeserta;
-                $modelTrans->idFilm = $request->get('idFilm');
-                $modelTrans->statusTransaksi = 'Menunggu';
-                $modelTrans->pengajuanKarakter = $request->get('pengajuanKarakter');
-                $modelTrans->createdAt = Carbon::now();
-                $modelTrans->updatedAt = Carbon::now();
-                $modelTrans->save();
+                DB::commit();
                 return redirect(route('frontCastingForm'))->with(['success' => 'Submit Success..']);
 
             }
@@ -151,6 +159,26 @@ class PageCastingController extends Controller
             return false;
         }
 	}
+
+
+    protected function storetoDbTrans($data)
+    {
+        $modelMaster = MasterPesertaCasting::where('email', $data['email'])->first();
+        $modelTrans = new TransaksiIkutCasting;
+       
+        $lastorderId = $modelTrans::max('idTrxCasting') ?? 1;
+        $lastIncreament = substr($lastorderId, -4);
+        $format = 'CAS' . date('Ymd') . str_pad($lastIncreament + 1, 4, 0, STR_PAD_LEFT);
+
+        $modelTrans->idTrxCasting = $format;
+        $modelTrans->idPeserta = $modelMaster->idPeserta;
+        $modelTrans->idFilm = $data['idFilm'];
+        $modelTrans->statusTransaksi = 'Menunggu';
+        $modelTrans->pengajuanKarakter = $data['pengajuanKarakter'];
+        $modelTrans->createdAt = Carbon::now();
+        $modelTrans->updatedAt = Carbon::now();
+        return $modelTrans->save();
+    }
 
 
 	 /**
@@ -303,7 +331,30 @@ class PageCastingController extends Controller
     }
 
 
+    /**
+     * send mail post casting
+     * @param $request
+     */
+    protected function sendMailCasting($data)
+    {
 
+        try {
+            $details = [
+                'title' => 'Mail from '.$data['email'],
+                'body' => 'This is for testing email using smtp'
+            ];
+
+            $mail = Mail::to('badrusalsyihab@gmail.com')->send(new NotifyCastingMail($details));
+
+            if (Mail::failures()) {
+                return false;
+            }else{
+                return true;
+            }
+        } catch (\Exception $e) {
+            return false;
+        }
+    } 
 
 
 	

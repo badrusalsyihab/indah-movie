@@ -92,7 +92,11 @@ class PageCastingController extends Controller
 		try {
            
 			$model = new MasterPesertaCasting;
-            $model->idPeserta = $model::max('idPeserta')+1;
+
+            $find = MasterPesertaCasting::orderBy('createdAt', 'desc')->first();
+            $getId = substr($find->idPeserta, 1)+1;
+
+            $model->idPeserta = 'P'.str_pad($getId, 6, 0, STR_PAD_LEFT);
             $model->email = $data['email'];
             $model->nama = $data['nama'];
             $model->password = Hash::make($data['password']);

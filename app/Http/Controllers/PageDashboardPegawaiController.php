@@ -77,6 +77,9 @@ class PageDashboardPegawaiController extends Controller
 	*/
     public function store(Request $request)
     {
+       
+//dd($request->all());
+
         $validator = Validator::make($request->all(), $this->validateStore($request));
 
         if ($validator->fails()) {
@@ -86,10 +89,16 @@ class PageDashboardPegawaiController extends Controller
         } else {
             //TODO: case pass
            if($request->get('id')){
-            $model = MasterEmployee::find($request->get('id'));
+              $model = MasterEmployee::find($request->get('id'));
            }else{
+
+            $find = MasterEmployee::orderBy('createdAt', 'desc')->first();
+            $getId = substr($find->idPeg, 1)+1;
+
             $model = new MasterEmployee;
-            $model->idPeg = $model::max('idPeg')+1;
+            $model->idPeg = 'E'.str_pad($getId, 5, 0, STR_PAD_LEFT);
+
+            
            }
            
             $model->nik = $request->nik;

@@ -76,11 +76,19 @@ class PageDashboardGenreFilmController extends Controller
             $model = MasterGenreFilm::find($request->get('id'));
            }else{
             $model = new MasterGenreFilm;
-            $model->idGenre = $model::max('idGenre')+1;
+
+            $find = MasterGenreFilm::orderBy('createdAt', 'desc')->first();
+
+            $getId = substr($find->idGenre, 1)+1;
+
+            $model->idGenre = 'G'.str_pad($getId, 6, 0, STR_PAD_LEFT);
+           
             $model->statusHapus = 'Aktif';
            }
            
             $model->namaGenre = $request->name;
+            $model->createdAt = Carbon::now();
+            $model->updatedAt = Carbon::now();
             $model->save();
             return redirect(route('adminDashboardGenreFilm'))->with(['success' => 'Genre Berhasil Di Save']);
         }

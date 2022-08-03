@@ -44,9 +44,11 @@ Route::group(['prefix' => 'casting', 'middleware' => 'casting'], function () {
 });
 
 
+Route::get('/login-pegawai', 'App\Http\Controllers\Auth\PagePegawaiAuthController@login')->name('frontPegawaiLogin');
+Route::get('/logout-pegawai', 'App\Http\Controllers\Auth\PagePegawaiAuthController@logout')->name('frontPegawaiLogout');
+Route::post('/login-pegawai-store', 'App\Http\Controllers\Auth\PagePegawaiAuthController@loginStore')->name('frontPegawaiLoginStore');
 
-
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => 'pegawai'], function () {
     Route::get('/', 'App\Http\Controllers\PageDashboardController@dashboard')->name('adminDashboard');
     Route::get('/login', 'App\Http\Controllers\PageDashboardController@login')->name('adminDashboardLogin');
     Route::get('/list', 'App\Http\Controllers\PageDashboardController@list')->name('adminDashboardList');
@@ -54,8 +56,21 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/setting', 'App\Http\Controllers\PageDashboardController@setting')->name('adminDashboardSetting');
 
 
+    Route::get('/pegawai', 'App\Http\Controllers\PageDashboardPegawaiController@index')->name('adminDashboardPegawai');
+    Route::get('/pegawai/{id}', 'App\Http\Controllers\PageDashboardPegawaiController@detail')->name('adminDashboardPegawaiDetail');
+    Route::get('/pegawai-form', 'App\Http\Controllers\PageDashboardPegawaiController@form')->name('adminDashboardPegawaiForm');
+    Route::get('/pegawai-delete/{id}', 'App\Http\Controllers\PageDashboardPegawaiController@delete')->name('adminDashboardPegawaiDelete');
+    Route::post('/pegawai-store', 'App\Http\Controllers\PageDashboardPegawaiController@store')->name('adminDashboardPegawaiStore');
+    Route::get('/pegawai-edit/{id}', 'App\Http\Controllers\PageDashboardPegawaiController@edit')->name('adminDashboardPegawaiEdit');
+
     Route::get('/casting', 'App\Http\Controllers\PageDashboardCastingController@index')->name('adminDashboardCasting');
     Route::get('/casting/{id}', 'App\Http\Controllers\PageDashboardCastingController@detail')->name('adminDashboardCastingDetail');
+
+    
+    Route::get('/list-ikut-casting', 'App\Http\Controllers\PageDashboardCastingController@transactionCasting')->name('adminDashboardCastingTransaction');
+    Route::get('/list-ikut-casting/{id}', 'App\Http\Controllers\PageDashboardCastingController@transactionCastingDetail')->name('adminDashboardCastingDetailTransaction');
+    Route::post('/list-update-status-casting', 'App\Http\Controllers\PageDashboardCastingController@transactionCastingUpdateStatus')->name('adminDashboardCastingUpdateStatus');
+    Route::post('/list-ikut-casting-search', 'App\Http\Controllers\PageDashboardCastingController@transactionCastingSearch')->name('adminDashboardCastingTransactionSearch');
 
     Route::get('/sponsor', 'App\Http\Controllers\PageDashboardSponsorController@index')->name('adminDashboardSponsor');
     Route::get('/sponsor-delete/{id}', 'App\Http\Controllers\PageDashboardSponsorController@delete')->name('adminDashboardSponsorDelete');

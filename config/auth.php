@@ -50,6 +50,11 @@ return [
             'driver' => 'session',
             'provider' => 'sponsor',
         ],
+
+        'pegawai' => [
+            'driver' => 'session',
+            'provider' => 'pegawai',
+        ],
     ],
 
     /*
@@ -83,6 +88,11 @@ return [
         'sponsor' => [
             'driver' => 'eloquent',
             'model' => App\Models\MasterSponsor::class,
+        ],
+
+        'pegawai' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\MasterEmployee::class,
         ],
 
         // 'users' => [

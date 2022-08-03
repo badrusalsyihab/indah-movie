@@ -6,6 +6,11 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Sanctum\HasApiTokens;
+
 /**
  * Class MasterEmployee
  * 
@@ -27,8 +32,11 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class MasterEmployee extends Model
+class MasterEmployee extends Authenticatable
 {
+	use HasFactory, Notifiable;
+	protected $guard = 'pegawai';
+
 	protected $table = 'master_employee';
 	protected $primaryKey = 'idPeg';
 	public $incrementing = false;
@@ -50,6 +58,7 @@ class MasterEmployee extends Model
 		'genderPeg',
 		'statusNikah',
 		'statusHapus',
+		'is_admin',
 		'createdAt',
 		'updatedAt',
 		'deletedAt'

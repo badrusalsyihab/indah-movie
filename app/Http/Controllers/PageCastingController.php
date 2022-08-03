@@ -337,7 +337,6 @@ class PageCastingController extends Controller
      */
     protected function sendMailCasting($data)
     {
-
         try {
             $details = [
                 'title' => 'Mail from '.$data['email'],

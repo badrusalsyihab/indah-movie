@@ -76,7 +76,13 @@ class PageDashboardCategoryFilmController extends Controller
             $model = MasterKategoriFilm::find($request->get('id'));
            }else{
             $model = new MasterKategoriFilm;
-            $model->idKategori = $model::max('idKategori')+1;
+
+            $find = MasterKategoriFilm::orderBy('createdAt', 'desc')->first();
+
+            $getId = substr($find->idKategori, 1)+1;
+            
+            $model->idKategori = 'K'.str_pad($getId, 6, 0, STR_PAD_LEFT);
+            
             $model->statusHapus = 'Aktif';
            }
            

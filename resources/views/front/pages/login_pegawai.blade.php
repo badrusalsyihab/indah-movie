@@ -57,7 +57,7 @@
 							</div>
 						</form>
 						
-						<div class="auth-option text-center pt-5">No Account? Sign up <a class="text-link" href="{{route('frontSignUp')}}" >here</a>.</div>
+						<!-- <div class="auth-option text-center pt-5">No Account? Sign up <a class="text-link" href="{{route('frontSignUp')}}" >here</a>.</div> -->
 					</div><!--//auth-form-container-->	
 
 			    </div><!--//auth-body-->

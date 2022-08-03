@@ -150,10 +150,10 @@ class PageCastingController extends Controller
                     DB::rollBack();
                     return redirect(route('frontCastingForm'));
                 }
-                if (!$this->sendMailCasting($request->all())) {
-                    DB::rollBack();
-                    return redirect(route('frontCastingForm'));
-                }
+                // if (!$this->sendMailCasting($request->all())) {
+                //     DB::rollBack();
+                //     return redirect(route('frontCastingForm'));
+                // }
 
                 DB::commit();
                 return redirect(route('frontCastingForm'))->with(['success' => 'Submit Success..']);

@@ -87,6 +87,8 @@ class PageDashboardCategoryFilmController extends Controller
            }
            
             $model->namaKategori = $request->name;
+            $model->createdAt = Carbon::now();
+            $model->updatedAt = Carbon::now();
             $model->save();
             return redirect(route('adminDashboardCategoryFilm'))->with(['success' => 'Category Berhasil Di Save']);
         }

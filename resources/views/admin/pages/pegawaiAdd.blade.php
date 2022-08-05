@@ -82,6 +82,18 @@
 									    
 									</div>
 
+									<div class="mb-3">
+									    <label for="setting-input-1" class="form-label">Admin
+  </label>
+  <select name="is_admin" class="form-select" id="setting-input-1">
+										  <option value="">Status</option>
+										  <option value="Yes">Yes</option>
+										  <option value="No">No</option>
+										 
+									    </select>
+									    
+									</div>
+
                                    
                                     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 									<button type="submit" class="btn app-btn-primary" >Save</button>

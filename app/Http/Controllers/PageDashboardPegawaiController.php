@@ -77,9 +77,6 @@ class PageDashboardPegawaiController extends Controller
 	*/
     public function store(Request $request)
     {
-       
-//dd($request->all());
-
         $validator = Validator::make($request->all(), $this->validateStore($request));
 
         if ($validator->fails()) {
@@ -110,6 +107,7 @@ class PageDashboardPegawaiController extends Controller
             $model->genderPeg = $request->genderPeg;
             $model->statusNikah = $request->statusNikah;
             $model->statusHapus = 'Aktif';
+            $model->is_admin = $request->is_admin;
             $model->createdAt = Carbon::now();
             $model->updatedAt = Carbon::now();
 
@@ -134,6 +132,8 @@ class PageDashboardPegawaiController extends Controller
             'passwordPeg' => 'required',
             'genderPeg' => 'required',
             'statusNikah' => 'required',
+            'is_admin' => 'required',
+            
 		];
 
         return $rules;

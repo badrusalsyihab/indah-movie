@@ -9,6 +9,13 @@ use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use GuzzleHttp\Client;
 
+use App\Models\MasterSponsor;
+use App\Models\MasterFilm;
+use App\Models\MasterPesertaCasting;
+use App\Models\MasterEmployee;
+
+
+
 class PageDashboardController extends Controller
 {
 	/*
@@ -16,7 +23,12 @@ class PageDashboardController extends Controller
 	*/
 	public function dashboard()
 	{
-		return view('admin.pages.dashboard');
+		$data['total_film'] = MasterFilm::where('statusHapus', 'Aktif')->count();
+		$data['total_casting'] = MasterPesertaCasting::where('statusHapus', 'Aktif')->count();
+		$data['total_pegawai'] = MasterEmployee::where('statusHapus', 'Aktif')->count();
+		$data['total_sponsor'] = MasterSponsor::where('statusHapus', 'Aktif')->count();
+	//	dd($data);
+		return view('admin.pages.dashboard', $data);
 	}
 
 

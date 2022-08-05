@@ -102,7 +102,7 @@
 					        <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 						        <ul class="submenu-list list-unstyled">
 								<li class="submenu-item"><a class="submenu-link" href="{{route('adminDashboardCastingTransaction')}}">Casting</a></li>
-								<li class="submenu-item"><a class="submenu-link" href="#">Sponsor</a></li>
+								<li class="submenu-item"><a class="submenu-link" href="{{route('adminDashboardSponsorTransaction')}}">Sponsor</a></li>
 						        </ul>
 					        </div>
 					    </li><!--//nav-item-->

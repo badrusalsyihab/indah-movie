@@ -5,6 +5,7 @@ namespace App\Http;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\CastingAuthenticationMiddleware;
 use App\Http\Middleware\PegawaiAuthenticationMiddleware;
+use App\Http\Middleware\SponsorAuthenticationMiddleware;
 
 class Kernel extends HttpKernel
 {
@@ -59,6 +60,7 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'casting' => CastingAuthenticationMiddleware::class,
         'pegawai' => PegawaiAuthenticationMiddleware::class,
+        'sponsor' => SponsorAuthenticationMiddleware::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,

@@ -48,6 +48,20 @@ Route::get('/login-pegawai', 'App\Http\Controllers\Auth\PagePegawaiAuthControlle
 Route::get('/logout-pegawai', 'App\Http\Controllers\Auth\PagePegawaiAuthController@logout')->name('frontPegawaiLogout');
 Route::post('/login-pegawai-store', 'App\Http\Controllers\Auth\PagePegawaiAuthController@loginStore')->name('frontPegawaiLoginStore');
 
+
+Route::get('/login-sponsor', 'App\Http\Controllers\Auth\PageSponsorAuthController@login')->name('frontSponsorLogin');
+Route::get('/logout-sponsor', 'App\Http\Controllers\Auth\PageSponsorAuthController@logout')->name('frontSponsorLogout');
+Route::post('/login-sponsor-store', 'App\Http\Controllers\Auth\PageSponsorAuthController@loginStore')->name('frontSponsorLoginStore');
+Route::get('/signup-sponsor', 'App\Http\Controllers\Auth\PageSponsorAuthController@signUp')->name('frontSponsorSignUp');
+Route::get('/sponsor', 'App\Http\Controllers\PageSponsorController@sponsor')->name('frontSponsor');
+Route::post('/signup-sponsor-store', 'App\Http\Controllers\PageSponsorController@formPostSponsor')->name('frontSignUpSponsorStore');
+Route::group(['prefix' => 'sponsor', 'middleware' => 'sponsor'], function () {
+    Route::get('/form', 'App\Http\Controllers\PageSponsorController@formSponsor')->name('frontSponsorForm');
+    Route::post('/form-post', 'App\Http\Controllers\PageSponsorController@formPostSponsor')->name('frontSponsorFormPost');
+    Route::post('/form-post-film', 'App\Http\Controllers\PageSponsorController@storeToTransactionSponsor')->name('frontSponsorFormPostFilm');
+    
+});
+
 Route::group(['prefix' => 'dashboard', 'middleware' => 'pegawai'], function () {
     Route::get('/', 'App\Http\Controllers\PageDashboardController@dashboard')->name('adminDashboard');
     Route::get('/login', 'App\Http\Controllers\PageDashboardController@login')->name('adminDashboardLogin');
@@ -71,6 +85,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'pegawai'], function () {
     Route::get('/list-ikut-casting/{id}', 'App\Http\Controllers\PageDashboardCastingController@transactionCastingDetail')->name('adminDashboardCastingDetailTransaction');
     Route::post('/list-update-status-casting', 'App\Http\Controllers\PageDashboardCastingController@transactionCastingUpdateStatus')->name('adminDashboardCastingUpdateStatus');
     Route::post('/list-ikut-casting-search', 'App\Http\Controllers\PageDashboardCastingController@transactionCastingSearch')->name('adminDashboardCastingTransactionSearch');
+
+    Route::get('/list-ikut-sponsor', 'App\Http\Controllers\PageDashboardSponsorController@transactionSponsor')->name('adminDashboardSponsorTransaction');
+    Route::get('/list-ikut-sponsor/{id}', 'App\Http\Controllers\PageDashboardSponsorController@transactionSponsorDetail')->name('adminDashboardSponsorDetailTransaction');
+    Route::post('/list-update-status-sponsor', 'App\Http\Controllers\PageDashboardSponsorController@transactionSponsorUpdateStatus')->name('adminDashboardSponsorUpdateStatus');
+    Route::post('/list-ikut-sponsor-search', 'App\Http\Controllers\PageDashboardSponsorController@transactionSponsorSearch')->name('adminDashboardSponsorTransactionSearch');
+
 
     Route::get('/sponsor', 'App\Http\Controllers\PageDashboardSponsorController@index')->name('adminDashboardSponsor');
     Route::get('/sponsor-delete/{id}', 'App\Http\Controllers\PageDashboardSponsorController@delete')->name('adminDashboardSponsorDelete');

@@ -94,9 +94,9 @@ class PageDashboardPegawaiController extends Controller
 
             $find = MasterEmployee::orderBy('createdAt', 'desc')->first();
             $getId = substr($find->idPeg, 1)+1;
-
+            
             $model = new MasterEmployee;
-            $model->idPeg = 'E'.str_pad($getId, 5, 0, STR_PAD_LEFT);
+            $model->idPeg = 'E'.str_pad($getId, 6, 0, STR_PAD_LEFT);
 
             
            }
